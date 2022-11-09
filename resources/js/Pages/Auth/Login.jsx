@@ -54,7 +54,8 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel forInput="password" value="Password" />
+                    {/* <InputLabel forInput="password" value="Password" /> */}
+                    <InputLabel forInput="password" value="Paswoord" />
 
                     <TextInput
                         type="password"
@@ -72,7 +73,8 @@ export default function Login({ status, canResetPassword }) {
                     <label className="flex items-center">
                         <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
 
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                        {/* <span className="ml-2 text-sm text-gray-600">Remember me</span> */}
+                        <span className="ml-2 text-sm text-gray-600">Onthoud mij</span>
                     </label>
                 </div>
 
@@ -82,7 +84,8 @@ export default function Login({ status, canResetPassword }) {
                             href={route('password.request')}
                             className="underline text-sm text-gray-600 hover:text-gray-900"
                         >
-                            Forgot your password?
+                            {/* Forgot your password? */}
+                            Paswoord vergeten?
                         </Link>
                     )}
 
