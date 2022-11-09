@@ -21,7 +21,7 @@ class CanteenPermanence extends Model
 
     public function canteenteam()
     {
-        return $this->belongsTo(CanteenTeam::class);
+        return $this->belongsTo(CanteenTeam::class,'canteen_team_id');
     }
 
     public function getJaarAttribute(): string

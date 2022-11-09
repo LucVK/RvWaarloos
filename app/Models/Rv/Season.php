@@ -42,4 +42,9 @@ class Season extends Model
     // {
     //     return $date->format('Y');
     // }
+
+    public function canteenpermanences()
+    {
+        return $this->hasMany(CanteenPermanence::class);
+    }
 }
