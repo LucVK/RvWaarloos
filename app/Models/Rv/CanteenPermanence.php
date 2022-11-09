@@ -28,4 +28,17 @@ class CanteenPermanence extends Model
     {
         return $this->season->year;
     }
+
+    public function jsonSerializeForCanteenCalendar()
+    {
+        return [
+            'Id' => $this->id,
+            'Subject' => $this->department->name,
+            'StartTime' => $this->date . 'T09:30:00.000Z',
+            'EndTime' => $this->date . 'T12:30:00.000Z',
+            // 'isAllDay' => true,
+            // 'team' => $this->canteenteam->name,
+        ];
+    }
+
 }

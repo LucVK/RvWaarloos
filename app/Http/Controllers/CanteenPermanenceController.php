@@ -12,6 +12,9 @@ use Inertia\Inertia;
 
 class CanteenPermanenceController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -22,19 +25,15 @@ class CanteenPermanenceController extends Controller
         $season = isset($season) ? $season : Season::firstWhere('year', Carbon::now()->format('Y'));
 
         $permanences = $season->canteenpermanences()->with(['department', 'canteenteam'])->get();
-        // $permanences = $season->canteenpermanences()->with('canteenteam')->get();
 
-        // $pp = $permanences->first();
-        // $ctid = $pp->canteen_team_id;
-        // $ppd = $pp->department;
-        // $ppt = $pp->canteenteam;
-        // $pps = $pp->season;
-        // $ct = CanteenTeam::find($ctid);
+        $calendarPermanences = [];
+        foreach ($permanences as $permanence) {
+            $calendarPermanences[] =$permanence->jsonSerializeForCanteenCalendar();
+        }
 
         return Inertia::render('CanteenPermanence/Index', [
-            'permanences' => $permanences,
+            'permanences' => $calendarPermanences,
         ]);
-        //
     }
 
     /**

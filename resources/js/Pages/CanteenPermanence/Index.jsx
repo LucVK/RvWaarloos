@@ -2,6 +2,7 @@ import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
+import CanteenPermanenceScheduler from '@/Components/CanteenPermanenceScheduler';
 
 import { useForm, Head } from '@inertiajs/inertia-react';
 
@@ -22,16 +23,17 @@ export default function Index({ auth, permanences }) {
         >
             <Head title="Tapbeurten" />
 
-            <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-                <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
+            <div className=" max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+
+                {/* <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
                     {permanences.map(permanence =>
-                        // <Chirp key={chirp.id} chirp={chirp} />
-                        <p key={permanence.id}>{permanence.date} - {permanence.department.name} - {permanence.canteenteam.name}</p>
-                        // <p>{permanence.date} - {permanence.department.name}</p>
-                        // <p>{permanence.date} - </p>
+                        <p key={permanence.id}>{permanence.startTime} - {permanence.subject} - {permanence.team}</p>
                     )}
-                </div>
+                </div> */}
+
+                <CanteenPermanenceScheduler permanences={permanences}/>
             </div>
+
 
         </AuthenticatedLayout>
     );
