@@ -6,7 +6,7 @@ import CanteenPermanenceScheduler from '@/Components/CanteenPermanenceScheduler'
 
 import { useForm, Head } from '@inertiajs/inertia-react';
 
-export default function Index({ auth, permanences }) {
+export default function Index({ auth, permanences, season, month }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         message: '',
     });
@@ -31,7 +31,7 @@ export default function Index({ auth, permanences }) {
                     )}
                 </div> */}
 
-                <CanteenPermanenceScheduler permanences={permanences}/>
+                <CanteenPermanenceScheduler permanences={permanences} season={season.year} month={month}/>
             </div>
 
 

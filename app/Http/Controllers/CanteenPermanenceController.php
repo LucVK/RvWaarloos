@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCanteenPermanenceRequest;
 use App\Models\Rv\CanteenTeam;
 use App\Models\Rv\Season;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class CanteenPermanenceController extends Controller
@@ -23,6 +24,7 @@ class CanteenPermanenceController extends Controller
     public function index(Season $season = null)
     {
         $season = isset($season) ? $season : Season::firstWhere('year', Carbon::now()->format('Y'));
+        $month = Request::query('month',0);
 
         $permanences = $season->canteenpermanences()->with(['department', 'canteenteam'])->get();
 
@@ -33,6 +35,8 @@ class CanteenPermanenceController extends Controller
 
         return Inertia::render('CanteenPermanence/Index', [
             'permanences' => $calendarPermanences,
+            'season' => $season->only(['year']),
+            'month' => $month,
         ]);
     }
 
