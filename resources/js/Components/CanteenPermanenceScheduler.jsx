@@ -29,6 +29,7 @@ function CanteenPermanenceScheduler( {permanences, season, month}) {
     }
     function onNavigation(args) {
         // console.log(args);
+        // args.cancel = true;
         let previousYear = args.previousDate.getFullYear();
         let currentYear = args.currentDate.getFullYear();
         if (currentYear != previousYear) {
@@ -51,6 +52,10 @@ function CanteenPermanenceScheduler( {permanences, season, month}) {
             // ref={t => scheduleObj = t}
             eventSettings={{ dataSource: data }}
             navigating = {onNavigation.bind(this)}
+
+            maxDate = {new Date(2022, 11, 31)}
+            minDate = {new Date(2015,0,1)}
+
             // eventRendered={onEventRendered.bind(this)}
             >
             {/* <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}/> */}
