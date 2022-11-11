@@ -22,6 +22,10 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "@syncfusion/ej2-react-schedule": "^20.3.56"
+        "@syncfusion/ej2-file-utils": "^20.3.56",
+        "@syncfusion/ej2-locale": "^20.3.56",
+        "@syncfusion/ej2-react-base": "^20.3.56",
+        "@syncfusion/ej2-react-schedule": "^20.3.56",
+        "cldr-data": "^36.0.1"
     }
 }
