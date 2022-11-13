@@ -133,10 +133,13 @@ import {L10n, setCulture} from '@syncfusion/ej2-base';
 /**
  * Schedule local data sample
  */
-function CanteenPermanenceScheduler( {permanences, season, month}) {
+function CanteenPermanenceScheduler( {permanences, season, month, state}) {
+    console.log(state);
+
     let scheduleObj;
     // const data = extend([], dataSource.zooEventsData, null, true);
     const data = extend([], permanences, null, true);
+
     function onEventRendered(args) {
         let categoryColor = args.data.CategoryColor;
         if (!args.element || !categoryColor) {
@@ -162,6 +165,7 @@ function CanteenPermanenceScheduler( {permanences, season, month}) {
                     method: 'get',
                     data: {
                         month: currentMonth,
+                        currentDate: args.currentDate.toLocaleDateString(),
                     },
                 });
             }
@@ -173,7 +177,8 @@ function CanteenPermanenceScheduler( {permanences, season, month}) {
         <div className='control-wrapper'>
           <ScheduleComponent width='100%' height='650px'
             currentView='Month'
-            selectedDate={new Date(season, month, 1)}
+            selectedDate= {state.currentDate}
+            // selectedDate={new Date(season, month, 1)}
             locale='nl'
             timezone='Europe/Brussels'
             // ref={t => scheduleObj = t}

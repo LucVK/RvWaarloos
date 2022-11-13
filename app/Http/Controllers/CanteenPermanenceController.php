@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Dtos\CanteenCalendarState;
 use App\Models\Rv\CanteenPermanence;
 use App\Http\Requests\StoreCanteenPermanenceRequest;
 use App\Http\Requests\UpdateCanteenPermanenceRequest;
@@ -26,6 +27,11 @@ class CanteenPermanenceController extends Controller
         $season = isset($season) ? $season : Season::firstWhere('year', Carbon::now()->format('Y'));
         $month = Request::query('month',0);
 
+        $state = CanteenCalendarState::from(['currentDate' => Carbon::now()]);
+        if (Request::query('currentDate') != null){
+            $state = CanteenCalendarState::from(Request::all());
+        }
+
         $permanences = $season->canteenpermanences()->with(['department', 'canteenteam'])->get();
 
         $calendarPermanences = [];
@@ -33,10 +39,13 @@ class CanteenPermanenceController extends Controller
             $calendarPermanences[] =$permanence->jsonSerializeForCanteenCalendar();
         }
 
+        $xxx = $state->currentDate->format("Y-m-d");
+
         return Inertia::render('CanteenPermanence/Index', [
             'permanences' => $calendarPermanences,
             'season' => $season->only(['year']),
             'month' => $month,
+            'state' => $state
         ]);
     }
 
